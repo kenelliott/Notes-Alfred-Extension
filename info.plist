@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>action</key>
+	<false/>
+	<key>background</key>
+	<true/>
+	<key>category</key>
+	<string>APPLESCRIPTS</string>
+	<key>command</key>
+	<string>on alfred_script(str)	set str to "" &amp; str &amp; ""	set AppleScript's text item delimiters to ":"	set theName to text item 1 of str	set theBody to text item 2 of str	tell application "Notes"		set theNotes to (get every note whose name is theName)		set cnt to count theNotes		if cnt is greater than 0 then			set thisNote to item 1 of theNotes			set totalBody to body of thisNote			set body of thisNote to body of thisNote &amp; "&lt;br /&gt;" &amp; theBody			return 1		else			make new note at folder "Notes" with properties {name:theName, body:"&lt;strong&gt;" &amp; theName &amp; "&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;" &amp; theBody}		end if	end tellend alfred_script</string>
+	<key>disabled</key>
+	<false/>
+	<key>keyword</key>
+	<string>note</string>
+	<key>parameter</key>
+	<integer>0</integer>
+	<key>subtitle</key>
+	<string>Notes Alfred Extension</string>
+	<key>title</key>
+	<string>Notes</string>
+</dict>
+</plist>
